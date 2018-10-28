@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="CustomDrawableSizeTextView">
+        <attr name="cdst_TopWidth" format="dimension" />
+        <attr name="cdst_TopHeight" format="dimension" />
+        <attr name="cdst_BottomWidth" format="dimension" />
+        <attr name="cdst_BottomHeight" format="dimension" />
+        <attr name="cdst_RightWidth" format="dimension" />
+        <attr name="cdst_RightHeight" format="dimension" />
+        <attr name="cdst_LeftWidth" format="dimension" />
+        <attr name="cdst_LeftHeight" format="dimension" />
+        <attr name="cdst_isSetting" format="boolean" />
+    </declare-styleable>
+</resources>

@@ -1,0 +1,57 @@
+apply plugin: 'com.android.library'
+
+android {
+    compileSdkVersion rootProject.ext.android.compileSdkVersion
+
+    defaultConfig {
+        minSdkVersion rootProject.ext.android.minSdkVersion
+        targetSdkVersion rootProject.ext.android.targetSdkVersion
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = [AROUTER_MODULE_NAME: project.getName()]
+            }
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility = '1.8'
+        targetCompatibility = '1.8'
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            buildConfigField("String", "BASE_URL", "\"123\"")
+        }
+        debug {
+            buildConfigField("String", "BASE_URL", "\"123\"")
+            debuggable true
+        }
+    }
+
+}
+
+dependencies {
+    api fileTree(dir: 'libs', include: ['*.jar'])
+
+    api rootProject.ext.dependencies.appcompatV7
+    api rootProject.ext.dependencies.design
+    api rootProject.ext.dependencies.constraint_layout
+
+    testImplementation rootProject.ext.dependencies.junit
+    androidTestImplementation rootProject.ext.dependencies.test_runner
+    androidTestImplementation rootProject.ext.dependencies.test_espresso
+
+    api project(':commonlibrary')
+
+    api(rootProject.ext.dependencies.arouter_api) {
+        exclude module: 'support-v4'
+    }
+    annotationProcessor rootProject.ext.dependencies.arouter_compiler
+}
