@@ -1,6 +1,6 @@
 # ModuleDemo
 
-[TOC]
+ [TOC]
 
 #### 项目介绍
 Android模块化(组件化)探索实践
