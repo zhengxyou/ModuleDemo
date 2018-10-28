@@ -1,7 +1,6 @@
+# ModuleDemo
 
 [TOC]
-
-# ModuleDemo
 
 #### 项目介绍
 Android模块化(组件化)探索实践
@@ -192,3 +191,5 @@ ext {
 6. [Android组件化方案](https://mp.weixin.qq.com/s/gCZYtXxBEPmcn53sWsLJ4g)
 7. [组件化在项目中的使用姿势](https://mp.weixin.qq.com/s/LXqPpoePcFOkB9bCdQuoKw)
 8. [Android组件化方案](https://blog.csdn.net/guiying712/article/details/55213884#3%E5%85%A8%E5%B1%80context%E7%9A%84%E8%8E%B7%E5%8F%96%E5%8F%8A%E7%BB%84%E4%BB%B6%E6%95%B0%E6%8D%AE%E5%88%9D%E5%A7%8B%E5%8C%96)
+
+[TOC]
