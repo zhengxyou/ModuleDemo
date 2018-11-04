@@ -1,5 +1,6 @@
 package com.zhengxyou.commonlibrary.utils;
 
+import android.Manifest;
 import android.content.ContentResolver;
 import android.content.ContentUris;
 import android.content.Context;
@@ -12,6 +13,7 @@ import android.os.Environment;
 import android.provider.DocumentsContract;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
+import android.support.annotation.RequiresPermission;
 
 import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
@@ -24,7 +26,7 @@ import java.io.InputStream;
  * {link "https://blog.csdn.net/smileiam/article/details/79753745"}
  */
 public class FileUriUtils {
-
+    @RequiresPermission(Manifest.permission.READ_EXTERNAL_STORAGE)
     public static String getFilePath(@NonNull Context context, @NonNull Uri uri) {
         // 以 file:// 开头的
         if (ContentResolver.SCHEME_FILE.equalsIgnoreCase(uri.getScheme())) {
@@ -86,6 +88,29 @@ public class FileUriUtils {
     }
 
     /**
+     * 获取数据库表中的 _data 列，即返回Uri对应的文件路径
+     */
+    private static String getDataColumn(Context context, Uri uri, String selection, String[]
+            selectionArgs) {
+        String path = null;
+
+        String[] projection = new String[]{MediaStore.Images.Media.DATA};
+        Cursor cursor = null;
+        try {
+            cursor = context.getContentResolver().query(uri, projection, selection, selectionArgs, null);
+            if (cursor != null && cursor.moveToFirst()) {
+                int columnIndex = cursor.getColumnIndexOrThrow(projection[0]);
+                path = cursor.getString(columnIndex);
+            }
+        } catch (Exception e) {
+            if (cursor != null) {
+                cursor.close();
+            }
+        }
+        return path;
+    }
+
+    /**
      * Google相册图片获取路径
      **/
     private static String getImageUrlWithAuthority(Context context, Uri uri) {
@@ -139,41 +164,18 @@ public class FileUriUtils {
     /**
      * 判断是否是Google相册的图片，类似于content://com.google.android.apps.photos.contentprovider/0/1/mediakey:/local%3A821abd2f-9f8c-4931-bbe9-a975d1f5fabc/ORIGINAL/NONE/1075342619
      **/
-    public static boolean isGooglePlayPhotosUri(Uri uri) {
+    private static boolean isGooglePlayPhotosUri(Uri uri) {
         return "com.google.android.apps.photos.contentprovider".equals(uri.getAuthority());
     }
 
     /**
      * 判断是否是Google相册的图片，类似于content://com.google.android.apps.photos.content/...
      **/
-    public static boolean isGooglePhotosUri(Uri uri) {
+    private static boolean isGooglePhotosUri(Uri uri) {
         return "com.google.android.apps.photos.content".equals(uri.getAuthority());
     }
 
     private static boolean isExternalStorageDocument(Uri uri) {
         return "com.android.externalstorage.documents".equals(uri.getAuthority());
-    }
-
-    /**
-     * 获取数据库表中的 _data 列，即返回Uri对应的文件路径
-     */
-    private static String getDataColumn(Context context, Uri uri, String selection, String[]
-            selectionArgs) {
-        String path = null;
-
-        String[] projection = new String[]{MediaStore.Images.Media.DATA};
-        Cursor cursor = null;
-        try {
-            cursor = context.getContentResolver().query(uri, projection, selection, selectionArgs, null);
-            if (cursor != null && cursor.moveToFirst()) {
-                int columnIndex = cursor.getColumnIndexOrThrow(projection[0]);
-                path = cursor.getString(columnIndex);
-            }
-        } catch (Exception e) {
-            if (cursor != null) {
-                cursor.close();
-            }
-        }
-        return path;
     }
 }
