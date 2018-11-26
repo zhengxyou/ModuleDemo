@@ -7,11 +7,15 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 
 
-public class EditTextUtil {
+public class KeyBoardUtil {
+    public static void toggleSoftInput(Context context) {
+        InputMethodManager imm = (InputMethodManager) context.getSystemService(Context.INPUT_METHOD_SERVICE);
+        if (imm == null) return;
+        imm.toggleSoftInput(0, InputMethodManager.HIDE_NOT_ALWAYS);
+    }
 
     /**
      * 弹出软键盘
-     *
      */
     public static void showSoftInput(Activity activity) {
         InputMethodManager imm =
@@ -30,10 +34,10 @@ public class EditTextUtil {
 
     /**
      * 弹出软键盘
-     *
      */
     public static void showSoftInput(Context context, View view) {
         InputMethodManager imm = (InputMethodManager) context.getSystemService(Context.INPUT_METHOD_SERVICE);
+        if (imm == null) return;
         view.setFocusable(true);
         view.setFocusableInTouchMode(true);
         view.requestFocus();
