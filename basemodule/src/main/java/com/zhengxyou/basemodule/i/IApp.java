@@ -25,4 +25,9 @@ public interface IApp {
      * 一些可以不需要马上初始化的第三方，可以放在IntentService进行初始化，提高应用的启动速度
      */
     void initLibsByIntentService();
+
+    /**
+     * 初始化第三方日志工具
+     */
+    void initLog();
 }

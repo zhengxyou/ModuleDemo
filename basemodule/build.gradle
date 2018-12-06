@@ -44,6 +44,11 @@ dependencies {
     api rootProject.ext.dependencies.design
     api rootProject.ext.dependencies.constraint_layout
 
+    implementation rootProject.ext.dependencies.log
+
+    implementation rootProject.ext.dependencies.glide
+    annotationProcessor rootProject.ext.dependencies.glide_compiler
+
     testImplementation rootProject.ext.dependencies.junit
     androidTestImplementation rootProject.ext.dependencies.test_runner
     androidTestImplementation rootProject.ext.dependencies.test_espresso

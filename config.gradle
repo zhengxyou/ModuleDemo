@@ -18,7 +18,9 @@ ext {
             test_runner = "1.0.2",
             test_espresso = "3.0.2",
             arouter_compiler = "1.2.2",
-            arouter_api = "1.4.1"
+            arouter_api = "1.4.1",
+            glideVersion = "4.8.0",
+            logVersion = "1.6.0"
 
     ]
     //第三方版本号的管理
@@ -32,6 +34,9 @@ ext {
             constraint_layout      : "com.android.support.constraint:constraint-layout:$rootProject.constraint_layout",
             support_vector_drawable: "com.android.support:support-vector-drawable:$rootProject.supportLibraryVersion",
             arouter_api            : "com.alibaba:arouter-api:$rootProject.arouter_api",
-            arouter_compiler       : "com.alibaba:arouter-compiler:$rootProject.arouter_compiler"
+            arouter_compiler       : "com.alibaba:arouter-compiler:$rootProject.arouter_compiler",
+            log                    : "com.github.zhaokaiqiang.klog:library:$rootProject.logVersion",
+            glide                  : "com.github.bumptech.glide:glide:$rootProject.glideVersion",
+            glide_compiler         : "com.github.bumptech.glide:compiler:$rootProject.glideVersion"
     ]
 }

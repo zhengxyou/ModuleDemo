@@ -5,8 +5,10 @@ import android.app.Application;
 import android.content.Context;
 
 import com.alibaba.android.arouter.launcher.ARouter;
+import com.socks.library.KLog;
 import com.zhengxyou.basemodule.BuildConfig;
 import com.zhengxyou.basemodule.i.IApp;
+import com.zhengxyou.basemodule.utils.Constants;
 
 
 public class BaseApplication extends Application implements IApp {
@@ -35,6 +37,7 @@ public class BaseApplication extends Application implements IApp {
     public void initLibs() {
         initARouter();
         initLibsByIntentService();
+        initLog();
     }
 
     @Override
@@ -55,5 +58,10 @@ public class BaseApplication extends Application implements IApp {
     @Override
     public void initLibsByIntentService() {
 
+    }
+
+    @Override
+    public void initLog() {
+        KLog.init(BuildConfig.DEBUG, Constants.LOG_TAG);
     }
 }
